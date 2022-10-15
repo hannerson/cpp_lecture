@@ -1,7 +1,8 @@
 #include "adapter.hpp"
 #include "factory.hpp"
-#include "singleton.hpp"
 #include "observer.hpp"
+#include "proxy.hpp"
+#include "singleton.hpp"
 
 int main() {
   // 单例
@@ -50,4 +51,9 @@ int main() {
     sub.notify(MySubject::EVENT_3);
     sub.notify(MySubject::EVENT_1);
   }
+
+  WeatherService* service = new WeatherService();
+  WeatherProxy* proxy = new WeatherProxy(service);
+  proxy->get_temperature();
+  proxy->get_wind();
 }
